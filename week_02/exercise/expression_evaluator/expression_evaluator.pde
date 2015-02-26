@@ -9,13 +9,13 @@
 import spacebrew.*;
 
 String server="sandbox.spacebrew.cc";
-String name="P5 Expression Evaluator";
+String name="Totti";//"P5 Expression Evaluator";
 String description ="Client that sends boolean messages.";
 String enteredTxt = "";
 
 //if a user enters this string, the evaluator returns true
 //@TODO enter your desired text string here
-String desiredTxt = "";
+String desiredTxt = "hello world";
 
 Spacebrew sb;
 
@@ -23,9 +23,7 @@ color color_truth = color(0, 255, 0);
 color color_false = color(255, 0, 0);
 int currentColor = color(255,255,255);
 
-/////////////////////////////////////
-//@TODO need to declare global boolean variable 
-////////////////////////////////////
+boolean isTrue = false;
 
 void setup() {
   size(500, 400);
@@ -61,14 +59,10 @@ void draw() {
   fill(230); //fill the text with off-white
   text(enteredTxt, width/2, height/2 + 12);
   
-  ////////////////////////////////////////////////////////////
-  //@TODO replace isTrue with your boolean variable from above
-  // and uncomment this code
-  /////////////////////////////////////////////////////////////
-  //  if(isTrue){
-  //    sb.send( "truthy_exp", true);//send a value of true to spacebrew
-  //    isTrue = false;//reset the value to false
-  //  }
+    if(isTrue){
+      sb.send( "truthy_exp", true);//send a value of true to spacebrew
+      isTrue = false;//reset the value to false
+    }
   
 }
 
@@ -83,7 +77,7 @@ void keyPressed(){
     // the value returned by this function should be assigned to your boolean variable
     // declared above 
     ////////////////////////////////////////////////
-    
+    check(enteredTxt);
     enteredTxt = "";
   }
 }
@@ -94,6 +88,15 @@ void keyPressed(){
 // and should return true or false, depending on whether the string entered
 // was the same string as your desiredTxt variable.
 ////////////////////////////////////////////////
+boolean check(String variableName){
+  if (variableName.equals(desiredTxt)){
+  return true;
+  }
+  else {
+  return false;
+  }
+
+  } 
 
 void onBooleanMessage( String name, boolean value ){
   println("got bool message " + name + " : " + value);
