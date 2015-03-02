@@ -1,4 +1,4 @@
-Mover m;
+sMover m;
 PVector wind;
 PVector gravity;
 PVector friction;
